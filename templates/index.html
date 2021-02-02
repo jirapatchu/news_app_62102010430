@@ -1,0 +1,78 @@
+{% extends 'base_layout.html' %}
+
+{% block body %}
+    <div class="mt">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="touch">
+                    <div class="card text-left">
+                        <div class="card-body">
+                            <h5 class="text-center"> สภาพอากาศประจำวันนี้ </h5>
+                            <form class="form-inline">
+                                <div class="md-form form-group mt-0">
+                                    <input name="city" type="text" id="city" class="form-control mr-sm-3"
+                                        aria-describedby="passwordHelpInlineMD">
+                                    <label for="city">Input city</label>
+                                    <input class="btn btn-secondary" type="submit" value="Submit">
+                                </div>
+                            </form>
+
+                            <div class="pl-3">
+                                <p>City : <b>{{weather.city}}, {{weather.country}}</b></p>
+                                <p>{{weather.description}} | {{weather.temperature}}&#8451 <img src="http://openweathermap.org/img/wn/{{weather.icon}}.png"></img></p>
+                                <p>ความเร็วลม : {{weather.wind}}</p>
+                                <p>ความชื้น : {{weather.humidity}}</p>
+                                <p>ความดัน : {{weather.pressure}}</p>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-12">
+                <div class="touch">
+                    <div class="card text-left">
+                        <div class="card-body">
+                            <h5 class="text-center"> Covid-19 News </h5>
+                            
+                                <div class="row">
+    
+                                    {% for news in news %}
+                                    <div class="col-md-4 mt-2">
+    
+                                        <div class="card">
+                                            <img class="card-img-top"
+                                                src="{{ news.urlToImage }}"
+                                                alt="Card image cap">
+                                            <div class="card-body">
+    
+                                                <h4 class="card-title"><a>{{news.title}}</a></h4>
+                                                <p class="card-text">{{ news.description }}</p>
+                                                <p  class=" card-text float-right">{{ news.publishedAt}}</p>
+                                                <div class="text-center">
+                                                    <a href="{{ news.url }}" class="text-center btn btn-danger">Readmore</a>
+    
+                                                </div>
+    
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                    {% endfor %}
+                                </div>
+                            </div>
+    
+    
+                        </div>
+    
+    
+                    </div>
+                </div>
+        </div>
+    </div>
+
+
+    {% endblock %}
